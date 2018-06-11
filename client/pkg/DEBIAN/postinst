@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+set -e
+
+# Create the compartidosd group if it doesn't exist yet and add all
+# existing users to it
+if [[ ! "$(getent group &NETWORK_GROUP&)" ]]; then
+	sudo groupadd &NETWORK_GROUP&
+	for user in /home/*; do
+		user="$(echo $user | sed 's/\/home\///g')"
+		if [[ "$user" != "lost+found" ]]; then
+			usermod -aG &NETWORK_GROUP& $user
+		fi
+	done
+fi
+
+systemctl daemon-reload
+systemctl enable compartidosd
+systemctl start compartidosd

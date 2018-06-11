@@ -1,0 +1,8 @@
+Package: &NAME&
+Version: &VERSION&
+Section: base
+Priority: optional
+Architecture: amd64
+Depends: cifs-utils (>= 2:6.4)
+Maintainer: Departamento de Programación de FACUA <programacion@facua.org>
+Description: A daemon for mounting network shares

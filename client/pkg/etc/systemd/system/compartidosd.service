@@ -1,0 +1,17 @@
+[Unit]
+Description=Compartidos daemon v&PACKAGE_VERSION&
+After=smbd.service nmbd.service
+
+[Service]
+Environment="SERVER_ADDRESS=&SERVER_ADDRESS&"
+Environment="SHARED_FOLDER_NAME=&SHARED_FOLDER_NAME&"
+Environment="TICK_INTERVAL_MS=&TICK_INTERVAL_MS&"
+Environment="NETWORK_FOLDER=&NETWORK_FOLDER&"
+Environment="NETWORK_GROUP=&NETWORK_GROUP&"
+ExecStart=/usr/local/bin/org.facua/compartidosd
+Restart=always
+KillMode=process
+KillSignal=2
+
+[Install]
+WantedBy=multi-user.target
